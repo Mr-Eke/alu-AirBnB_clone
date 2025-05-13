@@ -41,6 +41,30 @@ class TestBaseModel(unittest.TestCase):
         """
         self.assertTrue(uuid.UUID(self.obj_1.id, version=4))
 
+    def test_to_dict_obj(self):
+        """ Test the conversion of BaseModel object attributes to a
+        dictionary using to_dict() method.
+        """
+        self.obj_1.updated_at = datetime.utcnow()
+        obj_dict = self.obj_1.to_dict()
+
+        # Validate data types of dictionary values after to_dict() conversion
+        self.assertIsInstance(obj_dict, dict)
+        self.assertIsInstance(obj_dict["id"], str)
+        self.assertIsInstance(obj_dict["__class__"], str)
+        self.assertIsInstance(obj_dict["created_at"], str)
+        self.assertIsInstance(obj_dict["updated_at"], str)
+        self.assertEqual(obj_dict["__class__"], "BaseModel")
+
+    def test_save_method(self):
+        """ Test the save() method of the BaseModel class.
+        Asserts that The 'updated_at' attribute before calling save() is
+        not the same after calling save().
+        """
+        before_save = self.obj_1.updated_at
+        after_save = self.obj_1.save()
+        # Validate that 'updated_at' attribute is updated after calling save()
+        self.assertNotEqual(before_save, after_save)
 
 
 
