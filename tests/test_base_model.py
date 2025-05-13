@@ -26,6 +26,8 @@ class TestBaseModel(unittest.TestCase):
             self.assertIsInstance(self.obj_1.id, str)
         with self.subTest():
             self.assertIsInstance(self.obj_1.updated_at, datetime)
+            self.assertIsInstance(self.obj_1.created_at, datetime)
+
 
     def test_unique_id(self):
         """ Test if the id attribute of different
