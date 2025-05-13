@@ -28,7 +28,6 @@ class TestBaseModel(unittest.TestCase):
             self.assertIsInstance(self.obj_1.updated_at, datetime)
             self.assertIsInstance(self.obj_1.created_at, datetime)
 
-
     def test_unique_id(self):
         """ Test if the id attribute of different
         BaseModel instances is unique.
@@ -67,6 +66,5 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(before_save, after_save)
 
 
-
-
-
+if __name__ == '__main__':
+    unittest.main()
